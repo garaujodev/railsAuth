@@ -37,6 +37,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # External Gems
-gem 'rack-cors', :require => 'rack/cors'
-gem 'devise_token_auth'
-gem "pundit"
+gem 'rack-cors', :require => 'rack/cors' # Rack Middleware for handling Cross-Origin Resource Sharing (CORS), which makes cross-origin AJAX possible.
+gem 'devise_token_auth' # Token based authentication for Rails JSON APIs
+gem "pundit" # Minimal authorization through OO design and pure Ruby classes
+
+gem "paranoia", "~> 2.2" # Paranoia to soft deletes
