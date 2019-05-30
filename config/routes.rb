@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'user/list', to: 'auth#list'
+  get 'user/get', to: 'auth#get'
   get 'user/:id', to: 'auth#show'
   put 'user/update/:id', to: 'auth#update'
   delete 'user/:id', to: 'auth#delete'

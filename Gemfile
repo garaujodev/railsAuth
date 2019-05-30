@@ -24,6 +24,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.8'
+  gem 'faker' # A library for generating fake data such as names, addresses, and phone numbers.
 end
 
 group :development do
@@ -40,5 +41,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rack-cors', :require => 'rack/cors' # Rack Middleware for handling Cross-Origin Resource Sharing (CORS), which makes cross-origin AJAX possible.
 gem 'devise_token_auth' # Token based authentication for Rails JSON APIs
 gem "pundit" # Minimal authorization through OO design and pure Ruby classes
-
 gem "paranoia", "~> 2.2" # Paranoia to soft deletes
