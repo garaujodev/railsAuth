@@ -20,7 +20,7 @@ class AuthController < ApplicationController
     if authorize @users 
       render json: {success: true, users: @users}, status: :ok
     else
-      render json: {success: false, users: 'not'}, status: :ok
+      render json: {success: false, users: 'Unauthorized'}, status: :unauthorized
     end
   end
 
