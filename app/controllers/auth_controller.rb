@@ -1,3 +1,5 @@
+include Pundit
+
 class AuthController < ApplicationController
   before_action :authenticate_user!
   
@@ -7,13 +9,19 @@ class AuthController < ApplicationController
       return render json: {success: false, message: 'User not found!'}, status: :not_found
     end
     
+    authorize @user
+
     render json: {success: true, user: @user}, status: :ok
   end
 
-  def list
+  def get
     @users = User.all
 
-    render json: {success: true, users: @users}, status: :ok
+    if authorize @users 
+      render json: {success: true, users: @users}, status: :ok
+    else
+      render json: {success: false, users: 'not'}, status: :ok
+    end
   end
 
   def update
@@ -21,6 +29,8 @@ class AuthController < ApplicationController
     if @user.nil?
       return render json: {success: false, message: 'User not found!'}, status: :not_found
     end
+
+    authorize @user
 
     if @user.update_attributes(user_params)
       render json: {success: true, user: @user}, status: :ok
@@ -35,9 +45,14 @@ class AuthController < ApplicationController
       return render json: {success: false, message: 'User not found!'}, status: :not_found
     end
 
-    @user.destroy
+    authorize @user
 
-    render json: {success: true, message: 'User deleted succesfuly!'}, status: :ok
+    if @user.destroy
+      render json: {success: true, message: 'User deleted succesfuly!'}, status: :ok
+    else
+      render json: {success: false, message: 'User deleted failure!'}, status: :ok
+    end
+
   end
 
   private
