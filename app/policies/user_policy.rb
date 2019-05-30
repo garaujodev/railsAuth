@@ -1,19 +1,25 @@
 class UserPolicy < ApplicationPolicy
 	# our authorization rules will go here
 	def delete?
-    user.role == "admin" || record == user
+    isUserAdminAndRecord
 	end
 
 	def update?
-		user.role == "admin" || record == user
+		isUserAdminAndRecord
 	end
 
 	def show?
-		user.role == "admin" || record == user
+		isUserAdminAndRecord
 	end
 
 	def list?
 	  user.role == "admin"
 	end
 
+	private
+
+	def isUserAdminAndRecord
+    user.role == 'admin' || record == user
+	end
+	
 end

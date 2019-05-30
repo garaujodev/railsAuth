@@ -29,6 +29,13 @@ let(:valid_attributes) { { first_name: Faker::HarryPotter.name, last_name: Faker
       end
     end
   end
+  
+  describe "GET /user/get" do
+    before { get '/user/get' }
+    it "returns http unauthorized when requests to /user/get without token" do
+      expect(response).to have_http_status(:unauthorized)
+    end
+  end
 
   describe 'signed out' do
     it 'when request protected route without token' do

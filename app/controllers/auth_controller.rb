@@ -35,7 +35,7 @@ class AuthController < ApplicationController
     if @user.update_attributes(user_params)
       render json: {success: true, user: @user}, status: :ok
     else
-      render json: {success: false, user: @user}, status: :unprocessable_entity
+      render json: {success: false, user: @user.errors}, status: :unprocessable_entity
     end
   end
 
@@ -50,7 +50,7 @@ class AuthController < ApplicationController
     if @user.destroy
       render json: {success: true, message: 'User deleted succesfuly!'}, status: :ok
     else
-      render json: {success: false, message: 'User deleted failure!'}, status: :ok
+      render json: {success: false, message: 'User deleted failure!'}, status: :bad_request
     end
 
   end
